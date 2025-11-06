@@ -1,0 +1,194 @@
+[gd_scene load_steps=16 format=3 uid="uid://d37n7c2wpd37c"]
+
+[ext_resource type="Script" uid="uid://d3sn18r8tkjsy" path="res://Game/paddlebally.gd" id="1_npsh3"]
+[ext_resource type="Script" uid="uid://cqrbrskbfm1fo" path="res://Game/player.gd" id="1_pbqyo"]
+[ext_resource type="Script" uid="uid://x5nh15l3mj0p" path="res://Game/enemy.gd" id="2_q0xqa"]
+[ext_resource type="Script" uid="uid://byrfwdk42p5mc" path="res://Game/ballMovement.gd" id="4_igl8s"]
+[ext_resource type="Script" uid="uid://dv5nk4ok1ocf" path="res://Game/score.gd" id="5_g7h5e"]
+[ext_resource type="Shape2D" uid="uid://b4ulucr8sdos1" path="res://sideborder.tres" id="6_kxk4j"]
+
+[sub_resource type="Gradient" id="Gradient_q26mo"]
+colors = PackedColorArray(0.184465, 0.117965, 6.01634e-08, 1, 2.88785e-06, 0.84033, 0.513989, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q26mo"]
+gradient = SubResource("Gradient_q26mo")
+width = 1152
+height = 648
+fill_to = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igl8s"]
+size = Vector2(1, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npsh3"]
+size = Vector2(1, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0xqa"]
+size = Vector2(20, 1152)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0xqa"]
+radius = 76.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_igl8s"]
+font_size = 56
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ee4kr"]
+size = Vector2(608, 49.0001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxk4j"]
+size = Vector2(300, 324)
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_filter = 1
+texture = SubResource("GradientTexture2D_q26mo")
+centered = false
+script = ExtResource("1_npsh3")
+
+[node name="Enemy" type="Area2D" parent="."]
+position = Vector2(1102, 324)
+script = ExtResource("2_q0xqa")
+
+[node name="ColorRect" type="ColorRect" parent="Enemy"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -60.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(-19.5, 0)
+shape = SubResource("RectangleShape2D_igl8s")
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(50, 324)
+script = ExtResource("1_pbqyo")
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(19.5, 0)
+shape = SubResource("RectangleShape2D_npsh3")
+
+[node name="Upper border" type="ColorRect" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+
+[node name="Area2D" type="Area2D" parent="Upper border"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper border/Area2D"]
+position = Vector2(576, 10.0013)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_q0xqa")
+
+[node name="Lower Border" type="ColorRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Area2D" type="Area2D" parent="Lower Border"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lower Border/Area2D"]
+position = Vector2(576, 10.0013)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_q0xqa")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.15, 0.15)
+script = ExtResource("4_igl8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_q0xqa")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ball"]
+polygon = PackedVector2Array(0, -76, 20, -73, 38, -65, 53, -53, 65, -38, 73, -19, 76, 0, 73, 20, 66, 38, 54, 54, 38, 66, 20, 73, 0, 76, -19, 73, -38, 66, -53, 54, -66, 38, -73, 20, -76, 0, -73, -19, -65, -38, -54, -53, -39, -65, -20, -73)
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 100.0
+offset_right = 20.0
+offset_bottom = 123.0
+grow_horizontal = 2
+text = "0      0"
+label_settings = SubResource("LabelSettings_igl8s")
+horizontal_alignment = 1
+script = ExtResource("5_g7h5e")
+
+[node name="LeftBorder" type="ColorRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Area2D" type="Area2D" parent="LeftBorder"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder/Area2D"]
+position = Vector2(-24.5007, 19.9999)
+rotation = -1.57079
+shape = ExtResource("6_kxk4j")
+
+[node name="RightBorder" type="ColorRect" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Area2D" type="Area2D" parent="RightBorder"]
+position = Vector2(40, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder/Area2D"]
+position = Vector2(24.5, 20)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_ee4kr")
+
+[node name="moveUp" type="TouchScreenButton" parent="."]
+position = Vector2(150, 159)
+shape = SubResource("RectangleShape2D_kxk4j")
+action = "ui_up"
+
+[node name="moveDown" type="TouchScreenButton" parent="."]
+position = Vector2(150, 486)
+shape = SubResource("RectangleShape2D_kxk4j")
+action = "ui_down"
+
+[connection signal="body_entered" from="Enemy" to="Ball" method="_on_hit"]
+[connection signal="body_entered" from="Player" to="Ball" method="_on_hit"]
+[connection signal="body_entered" from="Upper border/Area2D" to="Ball" method="_on_border_hit"]
+[connection signal="body_entered" from="Lower Border/Area2D" to="Ball" method="_on_border_hit"]
+[connection signal="body_entered" from="LeftBorder/Area2D" to="Ball" method="_on_left_border"]
+[connection signal="body_entered" from="RightBorder/Area2D" to="Ball" method="_on_right_border"]
+[connection signal="pressed" from="moveUp" to="Player" method="_on_touch_screen_down_press_p1"]
+[connection signal="released" from="moveUp" to="Player" method="_on_touch_screen_button_released"]
+[connection signal="pressed" from="moveDown" to="Player" method="_on_touch_screen_down_press_p1"]
+[connection signal="released" from="moveDown" to="Player" method="_on_touch_screen_button_released"]

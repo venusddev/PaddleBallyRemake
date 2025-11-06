@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca82eegdfj521"]
+
+[ext_resource type="Script" uid="uid://0ojqmnr45bp6" path="res://Main Menu/start.gd" id="1_vccqd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqn6e"]
+font_size = 50
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainMenuTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_top = 50.0
+offset_right = 45.5
+offset_bottom = 73.0
+grow_horizontal = 2
+text = "Paddle Bally"
+label_settings = SubResource("LabelSettings_pqn6e")
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -409.0
+offset_right = 96.0
+offset_bottom = -347.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start Game"
+script = ExtResource("1_vccqd")
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+text = "Version Alpha 2.0"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -500
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.46939, 0.646701, 1, 1)
+
+[connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
