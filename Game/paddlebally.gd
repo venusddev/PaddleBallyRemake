@@ -1,7 +1,7 @@
 extends Sprite2D
 
 var PADDLE_SPEED = 400
-var AI_speed = 300
+var AI_speed = 500
 var BALL_Y = 324
 var ScoreP1 = 0
 var ScoreP2 = 0

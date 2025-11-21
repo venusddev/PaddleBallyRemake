@@ -61,6 +61,6 @@ z_index = -500
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.46939, 0.646701, 1, 1)
+color = Color(0.47058824, 0.64705884, 1, 1)
 
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
