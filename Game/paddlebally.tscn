@@ -8,7 +8,8 @@
 [ext_resource type="Shape2D" uid="uid://b4ulucr8sdos1" path="res://sideborder.tres" id="6_kxk4j"]
 
 [sub_resource type="Gradient" id="Gradient_q26mo"]
-colors = PackedColorArray(0.184465, 0.117965, 6.01634e-08, 1, 2.88785e-06, 0.84033, 0.513989, 1)
+offsets = PackedFloat32Array(0.1, 1)
+colors = PackedColorArray(0.184465, 0.117965, 6.01634e-08, 1, 0.3525579, 0.5421221, 0.70236045, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q26mo"]
 gradient = SubResource("Gradient_q26mo")
